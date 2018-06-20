@@ -1,6 +1,10 @@
 {
   "name": "react-app",
   "version": "0.1.0",
+  "engines": {
+    "node": ">= 8.11.1",
+    "npm": ">= 5.6.0"
+  },
   "private": true,
   "dependencies": {
     "react": "^16.4.0",
