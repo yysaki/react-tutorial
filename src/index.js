@@ -4,7 +4,10 @@ import './index.css';
 
 function Square(props) {
   return (
-    <button className="square" onClick={props.onClick}>
+    <button
+      className={props.isWinCause ? "square win-cause" : "square"}
+      onClick={props.onClick}
+    >
       {props.value}
     </button>
   )
@@ -16,6 +19,7 @@ class Board extends React.Component {
       <Square
         key={i}
         value={this.props.squares[i]}
+        isWinCause={isWinCause(this.props.squares, i)}
         onClick={() => this.props.onClick(i)}
       />
     );
@@ -143,6 +147,17 @@ ReactDOM.render(
 );
 
 function calculateWinner(squares) {
+  const line = calculateWinCauseSquares(squares);
+  return line.length !== 0
+    ? squares[line[0]]
+    : null;
+}
+
+function isWinCause(squares, squareIndex) {
+  return calculateWinCauseSquares(squares).includes(squareIndex);
+}
+
+function calculateWinCauseSquares(squares) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -156,8 +171,9 @@ function calculateWinner(squares) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return lines[i];
     }
   }
-  return null;
+
+  return [];
 }
