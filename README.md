@@ -1,7 +1,8 @@
 react-tutorial
 --------------
 
-https://reactjs.org/tutorial/tutorial.html
+* tutorial page url: https://reactjs.org/tutorial/tutorial.html
+* deployed page url: http://yysaki.github.io/react-tutorial/
 
 improvements: 
 
